@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import { all, select, takeLatest, call, put } from "redux-saga/effects";
 import { IState } from "../..";
-import api from "../../../services/api";
+import productsService from "../../../services/products";
 import {
   addProductToCartFailure,
   addProductToCartRequest,
@@ -21,13 +21,13 @@ function* checkProductStock({ payload }: CheckProductStockRequest) {
   const currentQuantity: number = yield select((state: IState) => {
     return (
       state.cart.items.find((item) => item.product.id === product.id)
-        ?.quantity ?? 0
+        ?.quantity || 0
     );
   });
 
   const availableStockResponse: AxiosResponse<IStockResponse> = yield call(
-    api.get,
-    `stock/${product.id}`
+    productsService.getProductStock,
+    product.id
   );
 
   if (availableStockResponse.data.quantity > currentQuantity) {

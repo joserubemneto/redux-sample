@@ -1,14 +1,19 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import api from "../services/api";
-import { IProduct } from "../store/modules/cart/types";
+import productsService from "../../../services/products";
+import { IProduct } from "../../../store/modules/cart/types";
 import CatalogItem from "./CatalogItem";
 
 const Catalog = () => {
   const [catalog, setCatalog] = useState<IProduct[]>([]);
 
+  const fetchProducts = async () => {
+    const response = await productsService.getProducts()
+    setCatalog(response.data)
+  }
+
   useEffect(() => {
-    api.get("products").then((response) => setCatalog(response.data));
+    fetchProducts()
   }, []);
 
   return (

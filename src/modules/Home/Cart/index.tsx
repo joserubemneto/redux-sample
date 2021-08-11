@@ -1,11 +1,13 @@
 import { useSelector } from "react-redux";
-import { IState } from "../store";
-import { ICartItem } from "../store/modules/cart/types";
+import { IState } from "../../../store";
+import { ICartItem } from "../../../store/modules/cart/types";
 
 const Cart = () => {
   const cart = useSelector<IState, ICartItem[]>((state) => state.cart.items);
 
   return (
+    <> 
+    <h1>Cart</h1>
     <table>
       <thead>
         <tr>
@@ -26,6 +28,7 @@ const Cart = () => {
         ))}
       </tbody>
     </table>
+    </>
   );
 };
 

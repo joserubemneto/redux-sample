@@ -1,8 +1,8 @@
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IState } from "../store";
-import { addProductToCartRequest } from "../store/modules/cart/actions";
-import { IProduct } from "../store/modules/cart/types";
+import { IState } from "../../../store";
+import { addProductToCartRequest } from "../../../store/modules/cart/actions";
+import { IProduct } from "../../../store/modules/cart/types";
 
 interface CatalogItemProps {
   product: IProduct;

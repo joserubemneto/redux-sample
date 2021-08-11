@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from "redux";
 import { ICartState } from "./modules/cart/types";
 import rootReducer from "./modules/rootReducer";
-import rootSaga from "./modules/rootSaga";
+import rootMiddleware from "./modules/rootMiddleware";
 
 import createSagaMiddleware from "redux-saga";
 import { composeWithDevTools } from "redux-devtools-extension";
@@ -19,6 +19,6 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(...middlewares))
 );
 
-sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(rootMiddleware);
 
 export default store;
